@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICalculationService, CalculationManager>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
-builder.Services.AddDataAccessServices();
+builder.Services.AddDataAccessServices(builder.Configuration);
 builder.Services.AddBusinessServices();
 
 var app = builder.Build();

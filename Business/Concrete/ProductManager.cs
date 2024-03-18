@@ -35,7 +35,7 @@ public class ProductManager : IProductService
         }
         catch (Exception ex)
         {
-            return new ErrorResult($"{ResultMessages.Error.ProductAddServer}\n{ex.Message}");
+            return new ErrorResult($"{ResultMessages.Error.ProductAddServer} {ex.Message}");
         }
     }
 
@@ -48,7 +48,7 @@ public class ProductManager : IProductService
         }
         catch (Exception ex)
         {
-            return new ErrorResult($"{ResultMessages.Error.ProductDeleteServer}\n{ex.Message}");
+            return new ErrorResult($"{ResultMessages.Error.ProductDeleteServer} {ex.Message}");
         }
     }
 
@@ -65,7 +65,7 @@ public class ProductManager : IProductService
         }
         catch (Exception ex)
         {
-            return new ErrorDataResult<List<Product>>($"{ResultMessages.Error.ProductGetAllServer}\n{ex.Message}");
+            return new ErrorDataResult<List<Product>>($"{ResultMessages.Error.ProductGetAllServer} {ex.Message}");
         }
     }
 
@@ -82,7 +82,7 @@ public class ProductManager : IProductService
         }
         catch (Exception ex)
         {
-            return new ErrorDataResult<Product>($"{ResultMessages.Error.ProductGetServer}\n{ex.Message}");
+            return new ErrorDataResult<Product>($"{ResultMessages.Error.ProductGetServer} {ex.Message}");
         }
     }
 
@@ -101,7 +101,7 @@ public class ProductManager : IProductService
         }
         catch (Exception ex)
         {
-            return new ErrorResult($"{ResultMessages.Error.ProductUpdateServer}\n{ex.Message}");
+            return new ErrorResult($"{ResultMessages.Error.ProductUpdateServer} {ex.Message}");
         }
     }
 }
