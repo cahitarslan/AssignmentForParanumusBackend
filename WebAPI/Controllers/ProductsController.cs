@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPatch("Update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update(UpdateProductDto updateProductDto)
         {
             var product = _mapper.Map<Product>(updateProductDto);
