@@ -53,13 +53,13 @@ namespace WebAPI.Controllers
             var result = await _productService.AddAsync(product);
             if (result.Success)
             {
-                return Ok(result);
+                return Created("", result);
             }
             return BadRequest(result);
         }
 
 
-        [HttpPost("Update")]
+        [HttpPatch("Update")]
         public async Task<IActionResult> Update(UpdateProductDto updateProductDto)
         {
             var product = _mapper.Map<Product>(updateProductDto);
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost("Delete")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             var productResult = await _productService.GetByIdAsync(id);
