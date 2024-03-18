@@ -1,8 +1,6 @@
-﻿using Entities.Abstract;
+﻿namespace Entities.Dtos.Product;
 
-namespace Entities.Concrete;
-
-public class Product : IEntity
+public class GetProductDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
