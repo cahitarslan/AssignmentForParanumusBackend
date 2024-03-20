@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var result = await _productService.GetAllAsync();
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet("GetById")]
+        [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _productService.GetByIdAsync(id);
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost("Add")]
+        [HttpPost]
         public async Task<IActionResult> Add(AddProductDto addProductDto)
         {
             var product = _mapper.Map<Product>(addProductDto);
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPut("Update")]
+        [HttpPut]
         public async Task<IActionResult> Update(UpdateProductDto updateProductDto)
         {
             var product = _mapper.Map<Product>(updateProductDto);
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpDelete("Delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             var productResult = await _productService.GetByIdAsync(id);
