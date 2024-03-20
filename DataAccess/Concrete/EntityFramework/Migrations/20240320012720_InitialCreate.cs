@@ -32,10 +32,10 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                 columns: new[] { "Id", "Description", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, "Description for Phone", "Phone", 10000m },
-                    { 2, "Description for Desktop", "Desktop", 30000m },
-                    { 3, "Description for Laptop", "Laptop", 40000m },
-                    { 4, "Description for TV", "TV", 50000m }
+                    { 1, "Description for Book 1", "Book 1", 10m },
+                    { 2, "Description for Book 2", "Book 2", 20m },
+                    { 3, "Description for Book 3", "Book 3", 15m },
+                    { 4, "Description for Book 4", "Book 4", 30m }
                 });
         }
 

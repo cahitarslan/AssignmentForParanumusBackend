@@ -25,10 +25,10 @@ public class BaseDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ProductMap());
 
 
-        Product[] productEntitySeeds = { new() { Id = 1, Name = "Phone", Price = 10000, Description = "Description for Phone" },
-                                         new() { Id = 2, Name = "Desktop", Price = 30000, Description = "Description for Desktop" },
-                                         new() { Id = 3, Name = "Laptop", Price = 40000, Description = "Description for Laptop" },
-                                         new() { Id = 4, Name = "TV", Price = 50000, Description = "Description for TV" } };
+        Product[] productEntitySeeds = { new() { Id = 1, Name = "Book 1", Price = 10, Description = "Description for Book 1" },
+                                         new() { Id = 2, Name = "Book 2", Price = 20, Description = "Description for Book 2" },
+                                         new() { Id = 3, Name = "Book 3", Price = 15, Description = "Description for Book 3" },
+                                         new() { Id = 4, Name = "Book 4", Price = 30, Description = "Description for Book 4" } };
 
         modelBuilder.Entity<Product>().HasData(productEntitySeeds);
 

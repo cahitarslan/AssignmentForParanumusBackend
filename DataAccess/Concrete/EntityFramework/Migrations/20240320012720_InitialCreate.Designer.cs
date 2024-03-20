@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Concrete.EntityFramework.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240318153414_InitialCreate")]
+    [Migration("20240320012720_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -52,30 +52,30 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Description for Phone",
-                            Name = "Phone",
-                            Price = 10000m
+                            Description = "Description for Book 1",
+                            Name = "Book 1",
+                            Price = 10m
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Description for Desktop",
-                            Name = "Desktop",
-                            Price = 30000m
+                            Description = "Description for Book 2",
+                            Name = "Book 2",
+                            Price = 20m
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Description for Laptop",
-                            Name = "Laptop",
-                            Price = 40000m
+                            Description = "Description for Book 3",
+                            Name = "Book 3",
+                            Price = 15m
                         },
                         new
                         {
                             Id = 4,
-                            Description = "Description for TV",
-                            Name = "TV",
-                            Price = 50000m
+                            Description = "Description for Book 4",
+                            Name = "Book 4",
+                            Price = 30m
                         });
                 });
 #pragma warning restore 612, 618
