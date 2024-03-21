@@ -1,10 +1,13 @@
 using Business;
+using Business.Services;
 using DataAccess;
 using DataAccess.Concrete.EntityFramework.Contexts;
+using Entities.Concrete.Identity;
 using Entities.Profiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using WebAPI.CustomMiddlewares;
 using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,18 +15,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+builder.Services.AddScoped<ICacheService, CacheService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(options =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
         Title = "Assignment For Paranusmus Backend",
         Description = "Assignment For Paranusmus Backend",
 
     });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
         Name = "Authorization",
@@ -32,18 +43,18 @@ builder.Services.AddSwaggerGen(c =>
         BearerFormat = "JWT",
         Scheme = "bearer"
     });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement{    {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = JwtBearerDefaults.AuthenticationScheme
-                        }
-                    },
-                    new string[] {}
-                        }
-                    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement{    {
+                                new OpenApiSecurityScheme
+                                {
+                                    Reference = new OpenApiReference
+                                    {
+                                        Type = ReferenceType.SecurityScheme,
+                                        Id = JwtBearerDefaults.AuthenticationScheme
+                                    }
+                                },
+                                new string[] {}
+                            }
+     });
 });
 
 builder.Services.AddScoped<ICalculationService, CalculationManager>();
@@ -54,6 +65,11 @@ builder.Services.AddBusinessServices();
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddIdentityApiEndpoints<AppUser>()
+    .AddEntityFrameworkStores<BaseDbContext>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,7 +79,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseExceptionHandler(options => { });
+
+app.MapIdentityApi<AppUser>();
 
 app.UseAuthorization();
 

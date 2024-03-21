@@ -4,11 +4,13 @@ using Entities.Concrete;
 using Entities.Dtos.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -29,6 +31,7 @@ namespace WebAPI.Controllers
             {
                 var getProductDtos = _mapper.Map<List<GetProductDto>>(result.Data);
                 return Ok(new { success = result.Success, data = getProductDtos, message = result.Message });
+
             }
             return BadRequest(result);
         }

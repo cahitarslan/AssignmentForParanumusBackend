@@ -1,5 +1,7 @@
 ﻿using DataAccess.Abstract;
 using Entities.Abstract;
+using Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -7,7 +9,7 @@ namespace DataAccess.Concrete.EntityFramework.Repositories;
 
 public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepositoryAsync<TEntity>
     where TEntity : class, IEntity, new()
-    where TContext : DbContext
+    where TContext : IdentityDbContext<AppUser, AppRole, int>
 {
     protected TContext Context { get; }
     public EfEntityRepositoryBase(TContext context)
