@@ -13,15 +13,6 @@ public class EfUserDal : EfEntityRepositoryBase<AppUser, BaseDbContext>, IUserDa
 
     public async Task<List<AppRole>> GetUserRoleByIdAsync(int userId)
     {
-        // var userRoleIds = await Context.UserRoles
-        //    .Where(ur => ur.UserId == userId)
-        //    .Select(ur => ur.RoleId)
-        //    .ToListAsync();
-
-        //var roles = await Context.Roles
-        //    .Where(r => userRoleIds.Contains(r.Id))
-        //    .ToListAsync();
-
         var roles = await Context.UserRoles
        .Where(ur => ur.UserId == userId)
        .Join(Context.Roles,
