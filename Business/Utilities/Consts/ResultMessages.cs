@@ -5,11 +5,15 @@ public static class ResultMessages
     public struct Success
     {
         #region ProductMessages
-        public const string ProductAdd = "Product successfully added.";
-        public const string ProductDelete = "Product successfully deleted.";
-        public const string ProductUpdate = "Product successfully updated.";
-        public const string ProductInfoReceive = "Product information successfully received.";
-        public const string ProductsInfoReceive = "Products successfully received.";
+        public const string ProductAdd = "Product added successfully.";
+        public const string ProductDelete = "Product deleted successfully.";
+        public const string ProductUpdate = "Product updated successfully.";
+        public const string ProductInfoReceive = "Product information received successfully.";
+        public const string ProductsInfoReceive = "Products received successfully.";
+        #endregion
+
+        #region OrderMessages
+        public const string OrderPlace = "Order placed successfully.";
         #endregion
     }
 
