@@ -6,7 +6,6 @@ using Business.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using FluentValidation;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Business.Concrete;
 

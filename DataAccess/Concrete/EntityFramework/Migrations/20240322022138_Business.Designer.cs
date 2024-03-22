@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Concrete.EntityFramework.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240320230157_CustomIdentity")]
-    partial class CustomIdentity
+    [Migration("20240322022138_Business")]
+    partial class Business
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,7 +158,99 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                             SecurityStamp = "BGL56R3AGG36QC3L57PCNBCKR67KUNDJ",
                             TwoFactorEnabled = false,
                             UserName = "cahit@xyz.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "53242214-d1ef-41f5-90f2-78b8a085bd76",
+                            Email = "ahmet@xyz.com",
+                            EmailConfirmed = true,
+                            FirstName = "Ahmet",
+                            LastName = "Yılmaz",
+                            LockoutEnabled = true,
+                            NormalizedEmail = "AHMET@XYZ.COM",
+                            NormalizedUserName = "AHMET@XYZ.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJ0mB4+wZ3qjHPz9vp5g/i1B8tkrS8Bu5T3FxQliPBoZ2tqaLj+cmDUdN6LMiEzubw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "US75LHFSJCOKMLCGFKDNOIONICCEUOSX",
+                            TwoFactorEnabled = false,
+                            UserName = "ahmet@xyz.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4e13caf9-bbc6-4a85-b9fb-2aa25f9a20fe",
+                            Email = "ayse@xyz.com",
+                            EmailConfirmed = true,
+                            FirstName = "Ayşe",
+                            LastName = "Öztürk",
+                            LockoutEnabled = true,
+                            NormalizedEmail = "AYSE@XYZ.COM",
+                            NormalizedUserName = "AYSE@XYZ.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL7K3WoDfVir09s0qhsY/MWEGwtkGUqCvDPFSVR++cnpsO3yTU8JqdXFBhBf1AJbIw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "MYBC2DBVXHIKOTZI6O4BNFMCNNETLGQ2",
+                            TwoFactorEnabled = false,
+                            UserName = "ayse@xyz.com"
                         });
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("DiscountAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Product", b =>
@@ -319,6 +411,36 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Order", b =>
+                {
+                    b.HasOne("Entities.Concrete.Identity.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.OrderDetail", b =>
+                {
+                    b.HasOne("Entities.Concrete.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Entities.Concrete.Identity.AppRole", null)
@@ -368,6 +490,11 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

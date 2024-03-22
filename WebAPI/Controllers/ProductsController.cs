@@ -4,7 +4,6 @@ using Entities.Concrete;
 using Entities.Dtos.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 namespace WebAPI.Controllers
 {

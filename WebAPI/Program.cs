@@ -7,7 +7,6 @@ using Entities.Profiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using WebAPI.CustomMiddlewares;
 using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,7 @@ builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true
 
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
 
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+//builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddScoped<ICacheService, CacheService>();
 

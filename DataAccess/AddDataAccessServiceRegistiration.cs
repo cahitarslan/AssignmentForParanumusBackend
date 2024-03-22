@@ -15,6 +15,8 @@ public static class AddDataAccessServiceRegistiration
 
         services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ParanusmusConnectionString")));
         services.AddScoped<IProductDal, EfProductDal>();
+        services.AddScoped<IUserDal, EfUserDal>();
+        services.AddScoped<IOrderDal, EfOrderDal>();
 
         return services;
     }

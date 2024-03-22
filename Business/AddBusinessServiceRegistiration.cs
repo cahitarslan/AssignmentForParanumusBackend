@@ -12,6 +12,8 @@ public static class AddBusinessServiceRegistiration
     public static IServiceCollection AddBusinessServices(this IServiceCollection services)
     {
         services.AddScoped<IProductService, ProductManager>();
+        services.AddScoped<IUserService, UserManager>();
+        services.AddScoped<IOrderService, OrderManager>();
 
         services.AddTransient<IValidator<Product>, ProductValidator>();
 
