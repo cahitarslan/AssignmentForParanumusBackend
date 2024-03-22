@@ -7,12 +7,15 @@
 >In addition to the in-memory data store, I have set up a local database on MSSQL Server using Entity Framework Core with the code-first approach.
 
 Having the Data Storage and Processing workload package installed in Visual Studio 2022 would be beneficial.
- [IMAGE]
+ 
+![4](https://github.com/cahitarslan/AssignmentForParanumusBackend/assets/96558672/355a1bd7-f88f-44ca-a0d7-467dc0b41616)
 
 - Paste the following code in the Package Manager Console
 	```sh
 	update-database "20240322075420_CustomIdentity"
 	```
+![5](https://github.com/cahitarslan/AssignmentForParanumusBackend/assets/96558672/0920002e-d8d5-497c-bb26-30eb996aff9b)
+
 - After creating the database locally, you need to remove the Authorize attribute in the ProductsController.cs to view the products.
 - Alternatively, you can log in with the email and password provided below in object format, and then authorize with the returned JWT to view the products.
 	```sh
