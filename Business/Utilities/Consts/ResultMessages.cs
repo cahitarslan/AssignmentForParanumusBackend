@@ -11,6 +11,10 @@ public static class ResultMessages
         public const string ProductInfoReceive = "Product information successfully received.";
         public const string ProductsInfoReceive = "Products successfully received.";
         #endregion
+
+        #region OrderMessages
+        public const string OrderPlace = "Order placed successfully.";
+        #endregion
     }
 
     public struct Error

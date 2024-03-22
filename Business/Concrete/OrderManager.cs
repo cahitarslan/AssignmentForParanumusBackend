@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.Services;
+using Business.Utilities.Consts;
 using Business.Utilities.Results;
 using Business.Utilities.Results.Abstract;
 using DataAccess.Abstract;
@@ -12,14 +12,12 @@ namespace Business.Concrete;
 public class OrderManager : IOrderService
 {
     private readonly IOrderDal _orderDal;
-    private readonly ICacheService _cacheService;
     private readonly IProductService _productService;
     private readonly IUserService _userService;
 
-    public OrderManager(IOrderDal orderDal, ICacheService cacheService, IProductService productService, IUserService userService)
+    public OrderManager(IOrderDal orderDal, IProductService productService, IUserService userService)
     {
         _orderDal = orderDal;
-        _cacheService = cacheService;
         _productService = productService;
         _userService = userService;
     }
@@ -63,7 +61,7 @@ public class OrderManager : IOrderService
             await _orderDal.AddOrderDetailAsync(addedOrderDetail);
         }
 
-        return new SuccessDataResult<PlaceOrderResponse>(response, "");
+        return new SuccessDataResult<PlaceOrderResponse>(response, ResultMessages.Success.OrderPlace);
     }
 
     private async Task<decimal> ApplyDiscount(bool isEmployee, int userId, decimal totalAmount)
