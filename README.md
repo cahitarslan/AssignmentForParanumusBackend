@@ -11,6 +11,7 @@ Having the Data Storage and Processing workload package installed in Visual Stud
 ![4](https://github.com/cahitarslan/AssignmentForParanumusBackend/assets/96558672/355a1bd7-f88f-44ca-a0d7-467dc0b41616)
 
 - Paste the following code in the Package Manager Console
+  
 	```sh
 	update-database "20240322075420_CustomIdentity"
 	```
@@ -18,6 +19,7 @@ Having the Data Storage and Processing workload package installed in Visual Stud
 
 - After creating the database locally, you need to remove the Authorize attribute in the ProductsController.cs to view the products.
 - Alternatively, you can log in with the email and password provided below in object format, and then authorize with the returned JWT to view the products.
+  
 	```sh
 	{"email": "cahit@xyz.com, password: "Abc123!"}
 	```
