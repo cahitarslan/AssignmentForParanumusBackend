@@ -18,7 +18,7 @@ builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true
 
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
 
-//builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddScoped<ICacheService, CacheService>();
 
