@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Concrete.EntityFramework.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240320230157_CustomIdentity")]
-    partial class CustomIdentity
+    [Migration("20240322075320_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,18 +53,6 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "regular"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "employee"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Concrete.Identity.AppUser", b =>
@@ -139,26 +127,6 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "8589cfe2-1fd1-4081-8497-6354da859193",
-                            Email = "cahit@xyz.com",
-                            EmailConfirmed = true,
-                            FirstName = "Cahit",
-                            LastName = "Arslan",
-                            LockoutEnabled = true,
-                            NormalizedEmail = "CAHIT@XYZ.COM",
-                            NormalizedUserName = "CAHIT@XYZ.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIVtkjUir56hvfjooppnSKWa4rz5sFyQXa8JFZ1gK2tquXGT6Mrpm0xV4cGMnGOuqg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "BGL56R3AGG36QC3L57PCNBCKR67KUNDJ",
-                            TwoFactorEnabled = false,
-                            UserName = "cahit@xyz.com"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Concrete.Product", b =>

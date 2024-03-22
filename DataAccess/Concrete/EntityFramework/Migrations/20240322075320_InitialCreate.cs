@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccess.Concrete.EntityFramework.Migrations
 {
     /// <inheritdoc />
-    public partial class CustomIdentity : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -176,20 +176,6 @@ namespace DataAccess.Concrete.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { 1, null, "regular", null },
-                    { 2, null, "employee", null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "8589cfe2-1fd1-4081-8497-6354da859193", "cahit@xyz.com", true, "Cahit", "Arslan", true, null, "CAHIT@XYZ.COM", "CAHIT@XYZ.COM", "AQAAAAIAAYagAAAAEIVtkjUir56hvfjooppnSKWa4rz5sFyQXa8JFZ1gK2tquXGT6Mrpm0xV4cGMnGOuqg==", null, false, "BGL56R3AGG36QC3L57PCNBCKR67KUNDJ", false, "cahit@xyz.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
