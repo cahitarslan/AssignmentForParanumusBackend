@@ -7,6 +7,7 @@ using Entities.Profiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using WebAPI.CustomMiddlewares;
 using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
